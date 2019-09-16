@@ -33,6 +33,15 @@ OWOOO
 OWOOO  
 OWOOO  
 
+### Format
+The grid is formatted from the top left cell:
+  
+|      |      |      | 
+| ---- | ---- | ---- |
+| 1, 1 | 2, 1 | 3, 1 |  
+| 1, 2 | 2, 2 | 3, 2 |  
+| 1, 3 | 2, 3 | 3, 3 |  
+
 ---
 
 ## Running
