@@ -11,3 +11,6 @@
 
 AllCops:
   TargetRubyVersion: 2.3.4
+
+Metrics/LineLength:
+  Max: 140
