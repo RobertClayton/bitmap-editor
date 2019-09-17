@@ -2,17 +2,27 @@
 
 module Bitmap
   class Grid < Base
-    attr_reader :grid
+    attr_reader :grid, :m, :n
 
     def create(*args)
       return if valid_params(2, 'I', args)
 
-      m = args.flatten[0].to_i
-      n = args.flatten[1].to_i
-      @grid = Array.new(n) { Array.new(m, 'O') }
+      @m = args.flatten[0].to_i
+      @n = args.flatten[1].to_i
+      reset_grid
+    end
+
+    def clear
+      logger.warn "Grid can not be cleared before being created" and return false if n.nil? || m.nil?
+
+      reset_grid
     end
 
     private
+
+    def reset_grid
+      @grid = Array.new(n) { Array.new(m, 'O') }
+    end
 
     def valid_params(num_of_args_required, command, *args)
       # TODO: whitespace errors

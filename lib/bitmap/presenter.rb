@@ -2,10 +2,10 @@
 
 module Bitmap
   class Presenter
-    attr_reader :grid
+    attr_reader :bitmap_grid
 
     def initialize
-      @grid = Grid.new
+      @bitmap_grid = Grid.new
     end
 
     def new_command(line)
@@ -14,7 +14,9 @@ module Bitmap
 
       case operation
       when 'I'
-        grid.create(parameters)
+        bitmap_grid.create(parameters)
+      when 'C'
+        bitmap_grid.clear
       end
     end
   end
