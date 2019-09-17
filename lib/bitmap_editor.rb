@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'bitmap/grid'
+require_relative 'bitmap/presenter'
 require 'logger'
 
 # This is the initial interface that the user interacts with
@@ -7,10 +9,11 @@ class BitmapEditor
   INVALID_FILE_ERROR = 'Please provide a correct file'
   VALID_COMMANDS = %w[I C L V H S].freeze
 
-  attr_reader :logger
+  attr_reader :logger, :presenter
 
   def initialize
     @logger = Logger.new(STDOUT)
+    @presenter = Bitmap::Presenter.new
   end
 
   def run(file)
@@ -18,11 +21,12 @@ class BitmapEditor
 
     File.open(file).each do |line|
       line = line.chomp
-      command = line.chars.first
-      if VALID_COMMANDS.include?(command)
-        puts 'There is no image'
+      command = line.split
+
+      if VALID_COMMANDS.include?(command.first)
+        presenter.new_command(command)
       else
-        logger.warn "Command: #{command} is not recognised. This command line has been skipped."
+        logger.warn "Command not recognised. This command line has been skipped."
       end
     end
   end
