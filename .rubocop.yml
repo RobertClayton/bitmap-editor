@@ -15,7 +15,17 @@ AllCops:
 Metrics/LineLength:
   Max: 140
 
+Metrics/MethodLength:
+  Max: 16
+
+Metrics/CyclomaticComplexity:
+  Max: 7
+
 Style/AndOr:
   Exclude:
     - 'lib/bitmap_editor.rb'
     - 'lib/bitmap/grid.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'

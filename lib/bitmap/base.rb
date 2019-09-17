@@ -3,6 +3,7 @@
 require 'logger'
 
 module Bitmap
+  # Initializes logger
   class Base
     attr_reader :logger
 

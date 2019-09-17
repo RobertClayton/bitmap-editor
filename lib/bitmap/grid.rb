@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Bitmap
+  # Encapsulates the logic surrounding editing the grid
   class Grid < Base
     attr_reader :grid, :m, :n
 
@@ -8,12 +9,13 @@ module Bitmap
       return unless valid_params(2, 'I', args)
 
       m, n = args.flatten
-      @m, @n = m.to_i, n.to_i
+      @m = m.to_i
+      @n = n.to_i
       reset_grid
     end
 
     def clear
-      logger.warn "Grid can not be cleared before being created" and return false if n.nil? || m.nil?
+      logger.warn 'Grid can not be cleared before being created' and return false if n.nil? || m.nil?
 
       reset_grid
     end
@@ -23,6 +25,30 @@ module Bitmap
 
       x, y, c = args.flatten
       grid[format_num(y)][format_num(x)] = c
+    end
+
+    def vertical(*args)
+      x, y1, y2, c = args.flatten
+
+      coordinates = Array(y1.to_i..y2.to_i).each_with_object([]) do |y, arr|
+        arr << [x.to_i, y]
+      end
+
+      coordinates.each do |coordinate|
+        single_cell(coordinate << c)
+      end
+    end
+
+    def horizontal(*args)
+      x1, x2, y, c = args.flatten
+
+      coordinates = Array(x1.to_i..x2.to_i).each_with_object([]) do |x, arr|
+        arr << [x, y.to_i]
+      end
+
+      coordinates.each do |coordinate|
+        single_cell(coordinate << c)
+      end
     end
 
     private

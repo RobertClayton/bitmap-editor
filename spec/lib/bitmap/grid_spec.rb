@@ -38,7 +38,7 @@ RSpec.describe Bitmap::Grid do
   end
 
   describe '#single_cell' do
-    it "sets a single cell to the specified colour" do
+    it 'sets a single cell to the specified colour' do
       subject.create(%w[3 3])
 
       subject.single_cell(%w[3 2 A])
