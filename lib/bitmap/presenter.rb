@@ -17,6 +17,8 @@ module Bitmap
         bitmap_grid.create(parameters)
       when 'C'
         bitmap_grid.clear
+      when 'L'
+        bitmap_grid.single_cell(parameters)
       when 'S'
         present
       end

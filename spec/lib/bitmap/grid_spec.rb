@@ -36,4 +36,13 @@ RSpec.describe Bitmap::Grid do
       expect(subject.grid).to eq [%w[O O O O], %w[O O O O]]
     end
   end
+
+  describe '#single_cell' do
+    it "sets a single cell to the specified colour" do
+      subject.create(%w[3 3])
+
+      subject.single_cell(%w[3 2 A])
+      expect(subject.grid).to eq [%w[O O O], %w[O O A], %w[O O O]]
+    end
+  end
 end

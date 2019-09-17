@@ -18,7 +18,18 @@ module Bitmap
       reset_grid
     end
 
+    def single_cell(*args)
+      return unless valid_params(3, 'L', args)
+
+      x, y, c = args.flatten
+      grid[format_num(y)][format_num(x)] = c
+    end
+
     private
+
+    def format_num(number)
+      number.to_i - 1
+    end
 
     def reset_grid
       @grid = Array.new(n) { Array.new(m, 'O') }
