@@ -5,10 +5,10 @@ module Bitmap
     attr_reader :grid, :m, :n
 
     def create(*args)
-      return if valid_params(2, 'I', args)
+      return unless valid_params(2, 'I', args)
 
-      @m = args.flatten[0].to_i
-      @n = args.flatten[1].to_i
+      m, n = args.flatten
+      @m, @n = m.to_i, n.to_i
       reset_grid
     end
 
@@ -32,6 +32,7 @@ module Bitmap
       # TODO: colours to only be uppercase
 
       logger.warn "Incorrect number of arguments for command: '#{command}'" and return false if num_of_args_required != args.flatten.count
+      true
     end
   end
 end
