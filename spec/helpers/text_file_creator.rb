@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
+require 'tempfile'
+
 class TextFileCreator
   attr_reader :file_path
 
   def initialize
-    @file_path = File.join(Dir.tmpdir, 'bitmap_test_file.txt')
+    @file_path = Tempfile.new('bitmap_test_file.txt', '/tmp').path
   end
 
   def add_command(command)

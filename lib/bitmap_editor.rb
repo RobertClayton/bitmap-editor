@@ -1,19 +1,28 @@
 # frozen_string_literal: true
 
+require 'logger'
+
 # This is the initial interface that the user interacts with
 class BitmapEditor
-  INVALID_FILE_ERROR = 'please provide correct file'
+  INVALID_FILE_ERROR = 'Please provide a correct file'
+  VALID_COMMANDS = %w[I C L V H S].freeze
+
+  attr_reader :logger
+
+  def initialize
+    @logger = Logger.new(STDOUT)
+  end
 
   def run(file)
-    return INVALID_FILE_ERROR unless valid_file(file)
+    logger.warn INVALID_FILE_ERROR and return unless valid_file(file)
 
     File.open(file).each do |line|
       line = line.chomp
-      case line
-      when 'S'
+      command = line.chars.first
+      if VALID_COMMANDS.include?(command)
         puts 'There is no image'
       else
-        puts 'unrecognised command :('
+        logger.warn "Command: #{command} is not recognised. This command line has been skipped."
       end
     end
   end
@@ -21,8 +30,6 @@ class BitmapEditor
   private
 
   def valid_file(file)
-    return true unless file.nil? || !File.exist?(file)
-
-    puts INVALID_FILE_ERROR
+    file.nil? || !File.exist?(file) ? false : true
   end
 end
