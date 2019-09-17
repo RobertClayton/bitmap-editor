@@ -47,3 +47,20 @@ The grid is formatted from the top left cell:
 ## Running
 
 `>bin/bitmap_editor examples/show.txt`
+
+---
+
+### Further Work
+- lib/bitmap/grid.rb:
+    - Refactor to remove duplication.
+    - Many more validation checks. Some are listed as TODO's in the valid_params method.  
+    - Refactor method order, so that the code reads from top to bottom.
+    - Specs for #vertical.
+    - Specs for #horizontal.
+    - Specs for all validations checks.
+    - Comment: I am not so happy with the current state of this class. I feel it is becoming too bloated and needs extracting to other classes.
+- lib/bitmap/presenter.rb:
+    - Specs written for all methods.
+    - Comment: I feel this is a tidy Class. It carries out its functionality without pulling in lots of other logic.
+- lib/bitmap_editor.rb:
+    - Comment: This file I also feel encapsulates some logic that it shouldn't. I feel that the command validations would be better suited elsewhere.
