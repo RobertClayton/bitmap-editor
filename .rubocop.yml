@@ -14,3 +14,8 @@ AllCops:
 
 Metrics/LineLength:
   Max: 140
+
+Style/AndOr:
+  Exclude:
+    - 'lib/bitmap_editor.rb'
+    - 'lib/bitmap/grid.rb'

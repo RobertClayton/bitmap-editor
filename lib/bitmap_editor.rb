@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
+require_relative 'bitmap/base'
 require_relative 'bitmap/grid'
 require_relative 'bitmap/presenter'
 require 'logger'
+require 'pry'
 
 # This is the initial interface that the user interacts with
 class BitmapEditor
@@ -26,7 +28,7 @@ class BitmapEditor
       if VALID_COMMANDS.include?(command.first)
         presenter.new_command(command)
       else
-        logger.warn "Command not recognised. This command line has been skipped."
+        logger.warn 'Command not recognised. This command line has been skipped.'
       end
     end
   end
